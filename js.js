@@ -13,7 +13,24 @@ function playGame() {
         return prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
     }
 
-    
+    function playRound(humanChoice, computerChoice) {
+        humanChoice = humanChoice.toLowerCase();
+        if (humanChoice === computerChoice) {
+            console.log("It's a tie! Both chose " + humanChoice);
+            return;
+        }
+        if (
+            (humanChoice === "rock" && computerChoice === "scissors") ||
+            (humanChoice === "paper" && computerChoice === "rock") ||
+            (humanChoice === "scissors" && computerChoice === "paper")
+        ) {
+            humanScore++;
+            console.log("You win! " + humanChoice + " beats " + computerChoice);
+        } else {
+            computerScore++;
+            console.log("You lose! " + computerChoice + " beats " + humanChoice);
+        }
+    }
 }
 
 // Start the game
