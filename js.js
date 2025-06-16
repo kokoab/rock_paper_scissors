@@ -31,6 +31,23 @@ function playGame() {
             console.log("You lose! " + computerChoice + " beats " + humanChoice);
         }
     }
+
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+    }
+
+    console.log("Game Over!");
+    console.log("Human Score: " + humanScore);
+    console.log("Computer Score: " + computerScore);
+    if (humanScore > computerScore) {
+        console.log("You won the game!");
+    } else if (computerScore > humanScore) {
+        console.log("Computer won the game!");
+    } else {
+        console.log("It's a tie game!");
+    }
 }
 
 // Start the game
