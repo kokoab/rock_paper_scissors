@@ -21,7 +21,7 @@ function playGame() {
         computerScore = 0;
         humanScoreSpan.textContent = 0;
         computerScoreSpan.textContent = 0;
-        resultsDiv.textContent = "";
+        resultsDiv.textContent = "Rock Paper Scissors!";
         all_buttons.forEach(bt => bt.disabled = false);
     }
 
