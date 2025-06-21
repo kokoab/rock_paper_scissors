@@ -37,6 +37,7 @@ function playGame() {
         humanChoice = humanChoice.toLowerCase();
         if (humanChoice === computerChoice) {
             resultsDiv.textContent = "It's a tie! Both chose " + humanChoice;
+            resultsDiv.style.color = 'grey';
             return;
         }
         if (
@@ -47,10 +48,12 @@ function playGame() {
             humanScore++;
             humanScoreSpan.textContent = humanScore;
             resultsDiv.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+            resultsDiv.style.color = '#008006';
         } else {
             computerScore++;
             computerScoreSpan.textContent = computerScore;
             resultsDiv.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+            resultsDiv.style.color = 'rgb(202, 0, 0)';
         }
 
         if (humanScore === 5 || computerScore === 5) {
