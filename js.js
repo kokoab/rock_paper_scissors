@@ -1,9 +1,11 @@
 function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+  let humanScore = 0;
+  let computerScore = 0;
   const resultsDiv = document.getElementById("results");
   let humanScoreSpan = document.getElementById("human_score");
   let computerScoreSpan = document.getElementById("computer_score");
+  const all_buttons = document.querySelectorAll(".btn");
+  const resetButton = document.getElementById("reset");
 
   function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
@@ -11,13 +13,6 @@ function playGame() {
     if (randomNumber === 1) return "paper";
     return "scissors";
   }
-
-  // function getHumanChoice() {
-  //     return prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
-  // }
-
-  const all_buttons = document.querySelectorAll(".btn");
-  console.log(all_buttons[2]);
 
   all_buttons.forEach((bt) => {
     bt.addEventListener("click", () => playRound(bt.id, getComputerChoice()));
@@ -36,15 +31,18 @@ function playGame() {
     ) {
       humanScore++;
       humanScoreSpan.textContent = humanScore;
-      resultsDiv.textContent = resultsDiv.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+      resultsDiv.textContent = resultsDiv.textContent =
+        "You win! " + humanChoice + " beats " + computerChoice;
     } else {
       computerScore++;
       computerScoreSpan.textContent = computerScore;
-      resultsDiv.textContent = resultsDiv.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+      resultsDiv.textContent = resultsDiv.textContent =
+        "You lose! " + computerChoice + " beats " + humanChoice;
     }
 
     if (humanScore === 5 || computerScore === 5) {
-      resultsDiv.textContent = humanScore === 5 ? "You won the game!" : "Computer won the game!";
+      resultsDiv.textContent =
+        humanScore === 5 ? "You won the game!" : "Computer won the game!";
     }
   }
 
