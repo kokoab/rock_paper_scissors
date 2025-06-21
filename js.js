@@ -7,6 +7,8 @@ function playGame() {
   const all_buttons = document.querySelectorAll(".btn");
   const resetButton = document.getElementById("reset");
 
+  resultsDiv.textContent = "Rock Paper Scissors!";
+
   function getComputerChoice() {
     const randomNumber = Math.floor(Math.random() * 3);
     if (randomNumber === 0) return "rock";
