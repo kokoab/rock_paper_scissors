@@ -1,22 +1,43 @@
 function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+  let humanScore = 0;
+  let computerScore = 0;
+  const resultsDiv = document.getElementById("results");
+  let humanScoreSpan = document.getElementById("human_score");
+  let computerScoreSpan = document.getElementById("computer_score");
+  const all_buttons = document.querySelectorAll(".btn");
+  const resetButton = document.getElementById("reset");
 
-    function getComputerChoice() {
-        const randomNumber = Math.floor(Math.random() * 3);
-        if (randomNumber === 0) return "rock";
-        if (randomNumber === 1) return "paper";
-        return "scissors";
+  resultsDiv.textContent = "Rock Paper Scissors!";
+
+  function getComputerChoice() {
+    const randomNumber = Math.floor(Math.random() * 3);
+    if (randomNumber === 0) return "rock";
+    if (randomNumber === 1) return "paper";
+    return "scissors";
+  }
+
+  function resetGame() {
+        humanScore = 0;
+        computerScore = 0;
+        humanScoreSpan.textContent = 0;
+        computerScoreSpan.textContent = 0;
+        resultsDiv.textContent = "Rock Paper Scissors!";
+        all_buttons.forEach(bt => bt.disabled = false);
     }
 
-    function getHumanChoice() {
-        return prompt("Enter your choice (rock, paper, or scissors):").toLowerCase();
-    }
+  all_buttons.forEach((bt) => {
+    bt.addEventListener("click", () => playRound(bt.id, getComputerChoice()));
+  });
 
-    function playRound(humanChoice, computerChoice) {
+  resetButton.addEventListener("click", resetGame);
+
+  function playRound(humanChoice, computerChoice) {
+        if (!["rock", "paper", "scissors"].includes(humanChoice)) return;
+
         humanChoice = humanChoice.toLowerCase();
         if (humanChoice === computerChoice) {
-            console.log("It's a tie! Both chose " + humanChoice);
+            resultsDiv.textContent = "It's a tie! Both chose " + humanChoice;
+            resultsDiv.style.color = 'grey';
             return;
         }
         if (
@@ -25,29 +46,33 @@ function playGame() {
             (humanChoice === "scissors" && computerChoice === "paper")
         ) {
             humanScore++;
-            console.log("You win! " + humanChoice + " beats " + computerChoice);
+            humanScoreSpan.textContent = humanScore;
+            resultsDiv.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+            resultsDiv.style.color = '#008006';
         } else {
             computerScore++;
-            console.log("You lose! " + computerChoice + " beats " + humanChoice);
+            computerScoreSpan.textContent = computerScore;
+            resultsDiv.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+            resultsDiv.style.color = 'rgb(202, 0, 0)';
+        }
+
+        if (humanScore === 5 || computerScore === 5) {
+            resultsDiv.textContent = humanScore === 5 ? "Game Over! You won the game!" : "Game Over! Computer won the game!";
+            all_buttons.forEach(bt => bt.disabled = true);
+            return;
         }
     }
 
-    for (let i = 0; i < 5; i++) {
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-    }
-
-    console.log("Game Over!");
-    console.log("Human Score: " + humanScore);
-    console.log("Computer Score: " + computerScore);
-    if (humanScore > computerScore) {
-        console.log("You won the game!");
-    } else if (computerScore > humanScore) {
-        console.log("Computer won the game!");
-    } else {
-        console.log("It's a tie game!");
-    }
+  // console.log("Game Over!");
+  // console.log("Human Score: " + humanScore);
+  // console.log("Computer Score: " + computerScore);
+  // if (humanScore > computerScore) {
+  //     console.log("You won the game!");
+  // } else if (computerScore > humanScore) {
+  //     console.log("Computer won the game!");
+  // } else {
+  //     console.log("It's a tie game!");
+  // }
 }
 
 // Start the game

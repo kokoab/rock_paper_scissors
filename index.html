@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg">
+        <img src="/rock_paper_scissors/images/abstract-perspective-room-structure-wireframe-vector-design_1017-47348.avif" alt="">
+    </div>
+    <div class="parent">
+      <div class="main">
+        <div id="results"></div>
+        <div class="buttons">
+          <button class="btn" id="rock">Rock</button>
+          <button class="btn" id="paper">Paper</button>
+          <button class="btn" id="scissors">Scissors</button>
+        </div>
+        <div class="scores">
+          <div>Human score: <span id="human_score">0</span></div>
+          <div>Computer score: <span id="computer_score">0</span></div>
+        </div>
+        <button id="reset">Play Again</button>
+      </div>
+    </div>
     <script src="js.js"></script>
-</head>
-<body>
-
-</body>
+  </body>
 </html>
