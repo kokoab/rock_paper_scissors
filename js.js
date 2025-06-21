@@ -14,6 +14,15 @@ function playGame() {
     return "scissors";
   }
 
+  function resetGame() {
+        humanScore = 0;
+        computerScore = 0;
+        humanScoreSpan.textContent = 0;
+        computerScoreSpan.textContent = 0;
+        resultsDiv.textContent = "";
+        all_buttons.forEach(bt => bt.disabled = false);
+    }
+
   all_buttons.forEach((bt) => {
     bt.addEventListener("click", () => playRound(bt.id, getComputerChoice()));
   });
