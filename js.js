@@ -27,33 +27,36 @@ function playGame() {
     bt.addEventListener("click", () => playRound(bt.id, getComputerChoice()));
   });
 
-  function playRound(humanChoice, computerChoice) {
-    humanChoice = humanChoice.toLowerCase();
-    if (humanChoice === computerChoice) {
-      resultsDiv.textContent = "It's a tie! Both chose " + humanChoice;
-      return;
-    }
-    if (
-      (humanChoice === "rock" && computerChoice === "scissors") ||
-      (humanChoice === "paper" && computerChoice === "rock") ||
-      (humanChoice === "scissors" && computerChoice === "paper")
-    ) {
-      humanScore++;
-      humanScoreSpan.textContent = humanScore;
-      resultsDiv.textContent = resultsDiv.textContent =
-        "You win! " + humanChoice + " beats " + computerChoice;
-    } else {
-      computerScore++;
-      computerScoreSpan.textContent = computerScore;
-      resultsDiv.textContent = resultsDiv.textContent =
-        "You lose! " + computerChoice + " beats " + humanChoice;
-    }
+  resetButton.addEventListener("click", resetGame);
 
-    if (humanScore === 5 || computerScore === 5) {
-      resultsDiv.textContent =
-        humanScore === 5 ? "You won the game!" : "Computer won the game!";
+  function playRound(humanChoice, computerChoice) {
+        if (!["rock", "paper", "scissors"].includes(humanChoice)) return;
+
+        humanChoice = humanChoice.toLowerCase();
+        if (humanChoice === computerChoice) {
+            resultsDiv.textContent = "It's a tie! Both chose " + humanChoice;
+            return;
+        }
+        if (
+            (humanChoice === "rock" && computerChoice === "scissors") ||
+            (humanChoice === "paper" && computerChoice === "rock") ||
+            (humanChoice === "scissors" && computerChoice === "paper")
+        ) {
+            humanScore++;
+            humanScoreSpan.textContent = humanScore;
+            resultsDiv.textContent = "You win! " + humanChoice + " beats " + computerChoice;
+        } else {
+            computerScore++;
+            computerScoreSpan.textContent = computerScore;
+            resultsDiv.textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+        }
+
+        if (humanScore === 5 || computerScore === 5) {
+            resultsDiv.textContent = humanScore === 5 ? "Game Over! You won the game!" : "Game Over! Computer won the game!";
+            all_buttons.forEach(bt => bt.disabled = true);
+            return;
+        }
     }
-  }
 
   // console.log("Game Over!");
   // console.log("Human Score: " + humanScore);
